@@ -1,11 +1,19 @@
-# BEGIN Borrowed from WordPress
+# Regex for matching Youtube Video IDs
+# http://stackoverflow.com/questions/2742813/how-to-validate-youtube-video-ids
+
+# BEGIN Adapted from WordPress
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteBase /
-RewriteRule ^index\.php$ - [L]
+RewriteRule ^index\.html$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /index.php [L]
-</IfModule>
+RewriteRule ^[a-zA-Z0-9_-]{11}/([0-4])/([0-9])/?$ /process.php [L]
+RewriteRule ^[a-zA-Z0-9_-]{11}/([0-4])/?$ /process.php [L]
+RewriteRule ^[a-zA-Z0-9_-]{11}/?$ /process.php [L]
 
-# END Borrowed from WordPress
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.html [L]
+</IfModule>
+# END
